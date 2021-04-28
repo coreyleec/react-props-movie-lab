@@ -30,14 +30,26 @@ const posterMap = {
 export default class MovieCard extends Component {
 
   render() {
+    console.log(this.props)
     return (
       <div className="movie-card">
-        {/* which component should receive which props? */}
-        <CardFront />
-        <CardBack />
+                  
+        <CardFront poster = {posterMap[this.props.poster]}/> 
+                  {/* CardFront and cardBack refers to the component being passed in */}
+        <CardBack 
+          title = {this.props.title} // value locations are adressed to their destinations in the components that are being passed forward
+          IMDBRating = {this.props.propsIMDBRating} // 
+          genres = {this.props.genres}/>
       </div>
     )
   }
 }
 
 // Don't forget your default props!
+MovieCard.defaultProps = {
+    title: "Unknown",
+    IMDBRating: null,
+    genres: ["No Genre(s) Found"],
+    poster: "default"
+  
+}
